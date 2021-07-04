@@ -26,7 +26,8 @@ class ItemStore {
 //        }
 //    }
     
-    //unlike in the textbook, this method does not return an item
+    //unlike in the textbook, this method does not return an item initially, so I skip the discardableResult
+    //return of Item added after init() commented out, after Add button added to the TableView
     func createItem () -> Item {
         //create a random Item object
         let newItem = Item (random: true)
@@ -38,5 +39,28 @@ class ItemStore {
         
     }
     
+    //this method removes a specific item
+    //to connect this to tableview, need to add tableView method in ItemsViewController
+    func removeItem(_ item: Item) {
+        //unlike textbook, nxt statement uses where instead of of:
+        if let index = allItems.firstIndex(where: {$0.name == item.name}) {
+            allItems.remove(at: index)
+        }
+    }
     
+    //this method changes the order of items in its allItems array
+    func moveItem(from fromIndex: Int, to toIndex: Int) {
+        if fromIndex == toIndex {
+            return
+        }
+        
+        //Get reference to object being moved so you can reinsert it
+        let movedItem = allItems[fromIndex]
+        
+        //Remove item from array
+        allItems.remove(at: fromIndex)
+        
+        //Insert item in array at new location
+        allItems.insert(movedItem, at: toIndex)
+    }
 }

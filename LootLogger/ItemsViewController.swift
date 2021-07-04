@@ -94,4 +94,32 @@ class ItemsViewController:UITableViewController {
         
     }
     
+    //this method is from UITableViewDataSource protocol
+    //ItemSource is where data is kept, table's views dataSource is ItemsViewController
+    //tableView(_:commit:forRowAt:) takes two arguments: 1) UITableViewCell.EditingStyle which in this case is .delete, and 2) the IndexPath of the row in hte table
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        //if the table view is asking to commit a delete command
+        if editingStyle == .delete {
+            let item = itemStore.allItems[indexPath.row]
+            
+            //Remove item from the store
+            itemStore.removeItem(item)
+            
+            //Also remove the row from the table view with an animation
+            //automatic means the tableView chooses the animation
+            //swipe to delete also works, not just the delete button
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    //To chnage order of rows, use another method from UITableViewDataSource protocol, tableView (_:moveRowAt:to:)
+    //Moving a row does not need confirmation, which means you don't need to call a method in tableView, like you did for
+    //deleteRows. The table view moves the row on its own authority and reports the move to its data source by calling the method tableView(_:moveRowAt:to:). By implementing this method, you update your data source to match the new order
+    //Before that, make sure to add a moveItem method in ItemStore
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        //Update the model
+        itemStore.moveItem(from: sourceIndexPath.row, to: destinationIndexPath.row)
+    }
+    
 }
