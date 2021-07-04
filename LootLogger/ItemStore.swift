@@ -18,18 +18,23 @@ class ItemStore {
     
     //populate the ItemStore with Item objects
     //by creating the store here instead of ItemsViewController, decouple objects in the application
-    init() {
-        for _ in 0..<5 {
-            createItem()
-        }
-    }
+    
+    //when commenting this out, make sure to have createItem return an Item by adding -> Item
+//    init() {
+//        for _ in 0..<5 {
+//            createItem()
+//        }
+//    }
     
     //unlike in the textbook, this method does not return an item
-    func createItem () {
+    func createItem () -> Item {
         //create a random Item object
         let newItem = Item (random: true)
         
         allItems.append(newItem)
+        
+        //add this when commenting the above init() out
+        return newItem
         
     }
     

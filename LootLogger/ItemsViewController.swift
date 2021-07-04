@@ -54,12 +54,43 @@ class ItemsViewController:UITableViewController {
     //To put UITAbleView in editing mode, we need to include a button in the header view of the table. Header view appears at the top of a table, and is useful for adding section-wide or table-wide titles and controls - can be any UIView instance.
     
     //We will add a View as a header, and then add two UIButtons to the header. We will add the actions here and the header and the buttons in storyboard file
+    //Two ways to add rows to a table view at runtime, using a button, or a tap a green + next to the record - in this example, we do first one
     
     @IBAction func addNewItem(_ sender: UIButton) {
         
+        //Create a new item and add it to the store
+        let newItem = itemStore.createItem()
+        
+        //Where is that item in the array
+        //in the textbook, it uses firstIndex(of: newItem), which no longer is supported
+        //so we add where and check for the first match for the name
+        if let index = itemStore.allItems.firstIndex(where: {$0.name == newItem.name}) {
+            let indexPath = IndexPath (row: index, section: 0)
+        
+           
+        //Insert this new row into the table
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        }
     }
     
     @IBAction func toggleEditingMode(_ sender: UIButton) {
+        
+        //Turn off and turn on editing mode
+        //if you are in editing mode
+        if isEditing {
+            //Change text of button to inform user of state
+            sender.setTitle("Edit", for: .normal)
+            
+            //Turn off editing mode
+            setEditing(false, animated: true)
+        }
+        else {
+            //Change text of button to inform user of state
+            sender.setTitle("Done", for: .normal)
+            
+            //Enter editing mode
+            setEditing(true, animated: true)
+        }
         
     }
     
