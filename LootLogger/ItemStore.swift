@@ -32,6 +32,13 @@ class ItemStore {
         return documentDirectory.appendingPathComponent("items.plist")
     }()
     
+    //save the encoded data when the application 'exits'. When the user leaves the application (such as going to the Home screen), the notification UIScene.didEnterBackgroundNotification is posted to the NotificationCenter. This method listens for that notification and saves the items when it is posted, by adding an observer
+    //notification center is written in Obj-C, so saveChanges should have @objc annotation
+    init() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(saveChanges), name: UIScene.didEnterBackgroundNotification, object: nil)
+    }
+    
     //populate the ItemStore with Item objects
     //by creating the store here instead of ItemsViewController, decouple objects in the application
     
