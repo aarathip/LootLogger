@@ -1,0 +1,6 @@
+framework module Pods_LootLogger {
+  umbrella header "Pods-LootLogger-umbrella.h"
+
+  export *
+  module * { export * }
+}

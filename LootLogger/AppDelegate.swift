@@ -6,14 +6,44 @@
 //
 
 import UIKit
+//to use Firebase
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    var window: UIWindow?
+    var ref: DatabaseReference!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        
+        //Make sure to enable anonymous authentication on the Firebase console also
+//        Auth.auth().signInAnonymously { authResult, error in
+//            // if no error
+//            if let error = error {
+//                print ("Error logging in \(error)")
+//            }
+//            else {
+//                guard let user = authResult?.user else { return }
+//                Database.database().isPersistenceEnabled = true
+//                self.ref = Database.database().reference()
+//                print("User id: " + user.uid)
+//            }
+//            //let isAnonymous = user.isAnonymous  // true
+//            self.ref.child("users/\(user.uid)/").getData { (error, snapshot) in
+//                if let error = error {
+//                    print("Error getting data \(error)")
+//                }
+//                else if snapshot.exists() {
+//                    print("Got data \(snapshot.value!)")
+//                }
+//                else {
+//                    print("No data available")
+//                }
+//            }
+     //   }
         return true
     }
 

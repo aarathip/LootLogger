@@ -8,7 +8,12 @@
 import UIKit
 import OSLog
 
-class Item {
+//Make Codable to make instances
+//For item to be encoded and decoded, you will need a coder.
+//Coder is responsible for encoding a type into some external representation
+//Either as a PropertyListEncoder or a JSONEncoder
+//In this example, we will serialize Item using a property list
+class Item : Codable {
     var name: String
     var valueInDollars: Int
     var serialNumber: String? //optional String, since not all items may have serial numbers
@@ -28,6 +33,8 @@ class Item {
         self.serialNumber = serialNumber
         self.valueInDollars = valueInDollars
         self.dateCreated = Date() //today's date
+        
+        print()
     }
     
     //a convenience initializer is optional and can call the designated initializer

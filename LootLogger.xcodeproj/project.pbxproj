@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9CD184910F14E6496035C518 /* Pods_LootLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA96C7972D8533617E99E636 /* Pods_LootLogger.framework */; };
 		A9157EAF2690EB72000327D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9157EAE2690EB72000327D6 /* AppDelegate.swift */; };
 		A9157EB12690EB72000327D6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9157EB02690EB72000327D6 /* SceneDelegate.swift */; };
 		A9157EB32690EB72000327D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9157EB22690EB72000327D6 /* ViewController.swift */; };
@@ -16,9 +17,11 @@
 		A9157EC32690EBA2000327D6 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9157EC22690EBA2000327D6 /* ItemsViewController.swift */; };
 		A9157EC52690ED04000327D6 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9157EC42690ED04000327D6 /* Item.swift */; };
 		A9157EC72690EDCC000327D6 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9157EC62690EDCC000327D6 /* ItemStore.swift */; };
+		A9475F93269249A0002C3998 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A9475F92269249A0002C3998 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A04ABCDAF002C651D8CF405 /* Pods-LootLogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LootLogger.debug.xcconfig"; path = "Target Support Files/Pods-LootLogger/Pods-LootLogger.debug.xcconfig"; sourceTree = "<group>"; };
 		A9157EAB2690EB72000327D6 /* LootLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LootLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9157EAE2690EB72000327D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9157EB02690EB72000327D6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +33,9 @@
 		A9157EC22690EBA2000327D6 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		A9157EC42690ED04000327D6 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A9157EC62690EDCC000327D6 /* ItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
+		A9475F92269249A0002C3998 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CC80496FFCF25486A6F864AE /* Pods-LootLogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LootLogger.release.xcconfig"; path = "Target Support Files/Pods-LootLogger/Pods-LootLogger.release.xcconfig"; sourceTree = "<group>"; };
+		FA96C7972D8533617E99E636 /* Pods_LootLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LootLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +43,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CD184910F14E6496035C518 /* Pods_LootLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		276D81CB11A65E120633EF4E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5A04ABCDAF002C651D8CF405 /* Pods-LootLogger.debug.xcconfig */,
+				CC80496FFCF25486A6F864AE /* Pods-LootLogger.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		278D879B5714F41F13FB802A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FA96C7972D8533617E99E636 /* Pods_LootLogger.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A9157EA22690EB72000327D6 = {
 			isa = PBXGroup;
 			children = (
 				A9157EAD2690EB72000327D6 /* LootLogger */,
 				A9157EAC2690EB72000327D6 /* Products */,
+				276D81CB11A65E120633EF4E /* Pods */,
+				278D879B5714F41F13FB802A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +88,7 @@
 		A9157EAD2690EB72000327D6 /* LootLogger */ = {
 			isa = PBXGroup;
 			children = (
+				A9475F92269249A0002C3998 /* GoogleService-Info.plist */,
 				A9157EC22690EBA2000327D6 /* ItemsViewController.swift */,
 				A9157EAE2690EB72000327D6 /* AppDelegate.swift */,
 				A9157EB02690EB72000327D6 /* SceneDelegate.swift */,
@@ -83,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9157EBF2690EB73000327D6 /* Build configuration list for PBXNativeTarget "LootLogger" */;
 			buildPhases = (
+				7D63E4A7FD6EA522F1980C31 /* [CP] Check Pods Manifest.lock */,
 				A9157EA72690EB72000327D6 /* Sources */,
 				A9157EA82690EB72000327D6 /* Frameworks */,
 				A9157EA92690EB72000327D6 /* Resources */,
+				1E155FE2CC909EFDF17902CF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -134,12 +163,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9157EBB2690EB73000327D6 /* LaunchScreen.storyboard in Resources */,
+				A9475F93269249A0002C3998 /* GoogleService-Info.plist in Resources */,
 				A9157EB82690EB73000327D6 /* Assets.xcassets in Resources */,
 				A9157EB62690EB72000327D6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1E155FE2CC909EFDF17902CF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LootLogger/Pods-LootLogger-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LootLogger/Pods-LootLogger-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LootLogger/Pods-LootLogger-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D63E4A7FD6EA522F1980C31 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LootLogger-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A9157EA72690EB72000327D6 /* Sources */ = {
@@ -295,6 +367,7 @@
 		};
 		A9157EC02690EB73000327D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A04ABCDAF002C651D8CF405 /* Pods-LootLogger.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -314,6 +387,7 @@
 		};
 		A9157EC12690EB73000327D6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC80496FFCF25486A6F864AE /* Pods-LootLogger.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
