@@ -19,6 +19,31 @@ class Item : Codable {
     var serialNumber: String? //optional String, since not all items may have serial numbers
     let dateCreated: Date
     
+    //Unlike book, iOS threw error saying Items does not confirm, so had to manually add encode and decode
+    //First need to create teh coding keys
+    enum CodingKeys: String, CodingKey {
+        case name
+        case valueInDollars
+        case serialNumber
+        case dateCreated
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(valueInDollars, forKey: .valueInDollars)
+        try container.encode(serialNumber, forKey: .serialNumber)
+        try container.encode(dateCreated, forKey: .dateCreated)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        valueInDollars = try container.decode(Int.self, forKey: .valueInDollars)
+        serialNumber = try container.decode(String?.self, forKey: .serialNumber)
+        dateCreated = try container.decode(Date.self, forKey: .dateCreated)
+    }
+    
     var logger = Logger(subsystem: "cs.skidmore.LootLogger", category: "Functionality")
     
     //if properties dont have initial values, it will throw an error "Class Item has no initializers

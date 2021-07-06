@@ -32,9 +32,23 @@ class ItemStore {
         return documentDirectory.appendingPathComponent("items.plist")
     }()
     
-    //save the encoded data when the application 'exits'. When the user leaves the application (such as going to the Home screen), the notification UIScene.didEnterBackgroundNotification is posted to the NotificationCenter. This method listens for that notification and saves the items when it is posted, by adding an observer
-    //notification center is written in Obj-C, so saveChanges should have @objc annotation
-    init() {
+       init() {
+        
+        //to load the items when application launches, you will use the PropertyListDecoder type when the ItemStore is created
+        do {
+            let data = try Data(contentsOf: itemArchiveURL)
+            let unarchiver = PropertyListDecoder()
+            let items = try unarchiver.decode([Item].self, from: data)
+            print("Reading saved items")
+            allItems = items
+        }
+        catch {
+            print ("Error reading in saved items: \(error)")
+        }
+        
+        //save the encoded data when the application 'exits'. When the user leaves the application (such as going to the Home screen), the notification UIScene.didEnterBackgroundNotification is posted to the NotificationCenter. This method listens for that notification and saves the items when it is posted, by adding an observer
+        //notification center is written in Obj-C, so saveChanges should have @objc annotation
+
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(saveChanges), name: UIScene.didEnterBackgroundNotification, object: nil)
     }
