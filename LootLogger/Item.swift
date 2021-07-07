@@ -20,7 +20,7 @@ class Item : Codable {
     let dateCreated: Date
     
     //Unlike book, iOS threw error saying Items does not confirm, so had to manually add encode and decode
-    //First need to create teh coding keys
+    //First need to create the coding keys
     enum CodingKeys: String, CodingKey {
         case name
         case valueInDollars
@@ -58,8 +58,6 @@ class Item : Codable {
         self.serialNumber = serialNumber
         self.valueInDollars = valueInDollars
         self.dateCreated = Date() //today's date
-        
-        print()
     }
     
     //a convenience initializer is optional and can call the designated initializer

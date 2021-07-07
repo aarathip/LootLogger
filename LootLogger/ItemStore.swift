@@ -16,6 +16,8 @@ import Firebase
 
 class ItemStore {
     var allItems = [Item] ()
+    var itemCount = 0
+    final var firstDateCreated = Date()
     
     //handle writing to and reading from a file in the Documents/ directory
     //Instead of assigning a value to a property, value is being set using a closure
@@ -32,15 +34,37 @@ class ItemStore {
         return documentDirectory.appendingPathComponent("items.plist")
     }()
     
+    let statsArchiveURL: URL = {
+        //method urls(for:in:) searches the filesystem for a URL that meets the criteria given by the arguments
+        //first argument is a SearchPathDirecotry that specifies the directory in the sandbox you want the URL (.cachesDirectory returns Caches directory
+        //returns an array of URLS
+        let documentsDirectories = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        //in iOS, there is usually only one URL
+        let documentDirectory = documentsDirectories.first!
+        //name is appended to the first and only url
+        return documentDirectory.appendingPathComponent("stats.plist")
+    }()
+    
        init() {
         
         //to load the items when application launches, you will use the PropertyListDecoder type when the ItemStore is created
         do {
+            print("Reading saved items")
+            print(itemArchiveURL)
+            
             let data = try Data(contentsOf: itemArchiveURL)
             let unarchiver = PropertyListDecoder()
             let items = try unarchiver.decode([Item].self, from: data)
-            print("Reading saved items")
             allItems = items
+            
+            let data_stats = try Data(contentsOf: statsArchiveURL)
+            let unarchiver_stats = PropertyListDecoder()
+            let stats = try unarchiver_stats.decode(Statistic.self, from: data_stats)
+            itemCount = stats.itemCount
+            firstDateCreated = stats.itemFirstDate
+            
+            print("Item Count is : \(itemCount)")
+            print("First item created on : \(firstDateCreated)")
         }
         catch {
             print ("Error reading in saved items: \(error)")
@@ -121,6 +145,14 @@ class ItemStore {
             //.atomic ensures no data corruption. it works by writing the data to a temporary auxiliary file and hten, if that succeeds, renaming that auxiliary file to the final filename. this is usually because there could be a items.plist that will need to be replaced, but if error occurs, original file will not be modified
             try data.write(to: itemArchiveURL, options: [.atomic])
             //data will be 'persisted' to disk when the saveChanges() method is called. The final step, then, is to call the saveChanges() method when you are ready to save, using the notification center.
+            
+            let myStats = Statistic(itemCount: allItems.count)
+            myStats.itemFirstDate = firstDateCreated
+            let data_stats = try encoder.encode(myStats)
+            
+            //.atomic ensures no data corruption. it works by writing the data to a temporary auxiliary file and hten, if that succeeds, renaming that auxiliary file to the final filename. this is usually because there could be a items.plist that will need to be replaced, but if error occurs, original file will not be modified
+            try data_stats.write(to: statsArchiveURL, options: [.atomic])
+            
             print("Saved all of the items")
             return true
         }
